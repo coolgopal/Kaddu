@@ -70,4 +70,17 @@ public class DynamicProfileManager {
             Toast.makeText(mContext, "Sorry, didn't get you!!", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void activateSleepingProfile() {
+        //
+    }
+
+    public void activateMeetingProfile() {
+        //
+    }
+
+    public void activateHomeProfile() {
+        //
+    }
+
 }

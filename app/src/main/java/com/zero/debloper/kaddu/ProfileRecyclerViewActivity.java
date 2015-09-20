@@ -48,18 +48,4 @@ public class ProfileRecyclerViewActivity extends Activity{
         rv.setAdapter(adapter);
     }
 
-    @Override
-    protected void onResume() {
-/*
-        switchCompatButton = (SwitchCompat) findViewById(R.id.switch_compat);
-        switchCompatButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Log.d(TAG, "switchCompatButton onCheckedChanged");
-            }
-        });
-*/
-
-        super.onResume();
-    }
 }

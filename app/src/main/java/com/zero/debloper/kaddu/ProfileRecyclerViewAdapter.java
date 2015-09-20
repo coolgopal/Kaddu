@@ -56,7 +56,8 @@ public class ProfileRecyclerViewAdapter extends RecyclerView.Adapter<ProfileRecy
     public void onBindViewHolder(ProfileViewHolder personViewHolder, int i) {
         personViewHolder.profileIcon.setImageResource(profiles.get(i).iconId);
         personViewHolder.profileName.setText(profiles.get(i).name);
-        personViewHolder.switchCompatButton.setOnCheckedChangeListener(new SwitchButtonStateChangeListener(i));
+        personViewHolder.switchCompatButton.setChecked(profiles.get(i).isEnabled);
+        personViewHolder.switchCompatButton.setOnCheckedChangeListener(new SwitchButtonStateChangeListener(i, context));
     }
 
     @Override
