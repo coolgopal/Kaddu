@@ -56,7 +56,10 @@ public class MainActivity extends AppCompatActivity {
             ArrayList matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
             // in “matches” array we holding a results... let’s show the most relevant
-            if (matches.size() > 0) Toast.makeText(this, (CharSequence) matches.get(0), Toast.LENGTH_LONG).show();
+            if (matches.size() > 0) {
+                //Toast.makeText(this, (CharSequence) matches.get(0), Toast.LENGTH_LONG).show();
+                DynamicProfileManager.getInstance(getApplicationContext()).parseVoiceCommand((String) matches.get(0));
+            }
         }
 
         super.onActivityResult(requestCode, resultCode, data);

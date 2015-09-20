@@ -1,7 +1,9 @@
 package com.zero.debloper.kaddu;
 
+import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,19 +21,23 @@ public class ProfileRecyclerViewAdapter extends RecyclerView.Adapter<ProfileRecy
         CardView cv;
         ImageView profileIcon;
         TextView profileName;
+        SwitchCompat switchCompatButton;
 
         ProfileViewHolder(View itemView) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.cv);
             profileIcon = (ImageView) itemView.findViewById(R.id.profile_icon);
-            profileName = (TextView)itemView.findViewById(R.id.profile_name);
+            profileName = (TextView) itemView.findViewById(R.id.profile_name);
+            switchCompatButton = (SwitchCompat) itemView.findViewById(R.id.switch_compat);
         }
     }
 
     List<Profile> profiles;
+    Context context;
 
-    ProfileRecyclerViewAdapter(List<Profile> profiles){
+    ProfileRecyclerViewAdapter(List<Profile> profiles, Context context){
         this.profiles = profiles;
+        this.context = context;
     }
 
     @Override
@@ -50,6 +56,7 @@ public class ProfileRecyclerViewAdapter extends RecyclerView.Adapter<ProfileRecy
     public void onBindViewHolder(ProfileViewHolder personViewHolder, int i) {
         personViewHolder.profileIcon.setImageResource(profiles.get(i).iconId);
         personViewHolder.profileName.setText(profiles.get(i).name);
+        personViewHolder.switchCompatButton.setOnCheckedChangeListener(new SwitchButtonStateChangeListener(i));
     }
 
     @Override
