@@ -1,6 +1,7 @@
 package com.zero.debloper.kaddu;
 
 import android.content.Context;
+import android.media.AudioManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -33,6 +34,17 @@ public class DynamicProfileManager {
 
     public void setCurrentProfile(int profile) {
         currentProfile = profile;
+
+        if (profile == PROFILE_SLEEPING) {
+            Toast.makeText(mContext, "Sleeping Mode Activated.", Toast.LENGTH_SHORT).show();
+            activateSleepingProfile();
+        } else if (profile == PROFILE_MEETING) {
+            Toast.makeText(mContext, "Meeting Mode Activated.", Toast.LENGTH_SHORT).show();
+            activateMeetingProfile();
+        } else if (profile == PROFILE_HOME) {
+            Toast.makeText(mContext, "Home Mode Activated.", Toast.LENGTH_SHORT).show();
+            activateHomeProfile();
+        }
     }
 
     public int getCurrentProfile() {
@@ -58,13 +70,10 @@ public class DynamicProfileManager {
     public void parseVoiceCommand(String command) {
         Log.v(TAG, "parseVoiceCommand <" + command + ">");
         if (command.contains(COMMAND_ACTIVATE_PROFILE_SLEEPING)) {
-            Toast.makeText(mContext, "Sleeping Mode Activated.", Toast.LENGTH_SHORT).show();
             DynamicProfileManager.getInstance(mContext).setCurrentProfile(PROFILE_SLEEPING);
         } else if (command.contains(COMMAND_ACTIVATE_PROFILE_MEETING)) {
-            Toast.makeText(mContext, "Meeting Mode Activated.", Toast.LENGTH_SHORT).show();
             DynamicProfileManager.getInstance(mContext).setCurrentProfile(PROFILE_MEETING);
         } else if (command.contains(COMMAND_ACTIVATE_PROFILE_HOME)) {
-            Toast.makeText(mContext, "Home Mode Activated.", Toast.LENGTH_SHORT).show();
             DynamicProfileManager.getInstance(mContext).setCurrentProfile(PROFILE_HOME);
         } else {
             Toast.makeText(mContext, "Sorry, didn't get you!!", Toast.LENGTH_SHORT).show();
@@ -72,15 +81,17 @@ public class DynamicProfileManager {
     }
 
     public void activateSleepingProfile() {
-        //
+        final AudioManager mode = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
+        mode.setRingerMode(AudioManager.RINGER_MODE_SILENT);
     }
 
     public void activateMeetingProfile() {
-        //
+        final AudioManager mode = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
+        mode.setRingerMode(AudioManager.RINGER_MODE_SILENT);
     }
 
     public void activateHomeProfile() {
-        //
+        final AudioManager mode = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
+        mode.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
     }
-
 }
