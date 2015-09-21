@@ -19,6 +19,8 @@
         </activity>
 
         <activity android:name=".ProfileRecyclerViewActivity" />
+        <activity android:name=".VoiceCommandHelpActivity" />
+        <activity android:name=".AboutActivity" />
     </application>
 
 </manifest>
